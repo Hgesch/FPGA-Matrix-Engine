@@ -1,0 +1,11 @@
+module Register (Databus, dWrite, dEnable, dReset);
+input dWrite, dEnable, dReset;
+reg [255:0] Memory_Ary;
+inout [255:0] Databus;
+
+module Memory (Databus, Address, dWrite, dEnable, dReset);
+module Execution (Databus, Address, dWrite, dEnable, dReset);
+module Instructions (Databus, Address, dWrite, dEnable, dReset);
+module ALU (Databus, Address, dWrite, dEnable, dReset);
+
+end module

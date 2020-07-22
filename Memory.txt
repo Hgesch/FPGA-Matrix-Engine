@@ -1,0 +1,28 @@
+//Memory Module By Hanna Gescheidle
+//This module supplies as the Memory for the Matrix Multiplier 
+//A databus is used for inputs and outputs. Not enable will have a high Z.
+//Route data to and from memory array as per read/write. Reading on the riding edge.
+//Enable is active-low.
+
+module Memory (Databus, Address, dWrite, dEnable, dReset);
+
+input dWrite, dEnable, dReset;	//Stating Inputs, Outputs and Registers
+input [7:0] Address;
+reg [255:0] Memory_Ary[15:0];
+inout [255:0] Databus;
+
+always @ ( negedge dReset )	//A reset at the negedge
+	begin
+		Memory_Ary[0] = 256'h0;
+		Memory_Ary[1] = 256'h0;
+	end
+always @ ( negedge dEnable )	//Enable for Output at the negedge
+	begin
+		Memory_Ary[Address] = 256'h0;
+	end
+always @ ( negedge dWrite )	//Output to the Databus
+	begin 
+		Memory_Ary[Address] = Databus[Address];
+	end
+
+end module

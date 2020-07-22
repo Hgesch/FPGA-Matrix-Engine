@@ -1,0 +1,34 @@
+//Testbench for the Memory Module Hanna Gescheidle
+//This will test the Memory Module to see if it is working properly.
+
+module TbMemory;
+
+reg dEnable, dWrite, dReset, Clk;
+reg [255:0] Address;
+
+wire [255:0] Databus;
+
+Memory TbMemory (Databus, Address, dWrite, dEnable, dReset, Clk);
+
+initial // Clock Generator
+	begin 
+		Clk = 0;
+		forever #10 Clk = !Clk;
+	end
+
+initial //Test Generator
+	begin
+		dReset = 0;	//Reset
+			# 10 dEnable = 1;
+				Address = 256'h0;
+					Databus = 256'h0;
+					dWrite = 0;
+
+				#20 Address = 256'h0;	//Write to Address
+					dWrite = 1;
+
+	end
+initial 
+	$monitor($stime, Databus, Address, dWrite, dEnable, dReset);	
+
+end module
