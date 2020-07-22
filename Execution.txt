@@ -1,0 +1,27 @@
+module Execution (Databus, Address, dEnable, dWrite, dReset, Clk);
+
+input dWrite, dEnable, dReset;
+input Current_State, Next_State;
+input [7:0] Address;
+inout [255:0] Databus;
+
+always @ (negaedge Clk);
+	case (Current_State);
+	Instruct: begin
+					
+					
+					
+				
+				
+				end
+	endcase
+	
+	Current_State = Next_State;
+
+always @ (negedge dReset);
+	Current_State = Instruct;
+	PC = 0;
+	
+
+
+end module

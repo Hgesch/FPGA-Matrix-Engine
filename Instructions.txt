@@ -1,0 +1,51 @@
+module Instructions (Databus, Address, Opcode, Inst_Latch, Current_State, Next_State, dWrite, dEnable, dReset);
+
+input dWrite, dEnable, dReset;
+input [4:0] Address;
+input Inst_Latch;
+input Opcode;
+input Current_State, Next_State;
+inout [255:0] Databus;
+reg [255:0] Memory_Ary[15:0];
+
+
+Memory_Ary [0] = 32'h 01_42_40_41;
+Memory_Ary [1] = 32'h 02_43_42_40;
+Memory_Ary [2] = 32'h_05_44_42_40;
+Memory_Ary [3] = 32'h_04_80_44_2a;
+Memory_Ary [4] = 32'h_03_45_80_44;
+Memory_Ary [5] = 32'h_ff_ff_ff_ff;
+
+
+
+//Information that will be used throughout the Code and how the Matrix Multiplier will work 
+//stop 0xff;
+//nop 0x00;
+//add 0x01;
+//sub 0x02;
+//mul 0x03;
+//scal 0x04;
+//trans 0x05;
+//8 Bit Destination 8 Bit Source 1 8 Bit Source 2
+
+
+Instruct: begin
+			Address = PC;
+			Instruct = 0;
+			Next_State = Inst_Latch;
+			end
+Inst_Latch: begin
+			Instruct = Databus;
+			Instruct = 1;
+			Next_State = Opcode;
+			end
+			
+			
+
+
+
+
+
+
+
+end module

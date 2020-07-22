@@ -1,0 +1,25 @@
+module TbExecution( Databus, Address, dEnble, dReset, dWrite, Clk);
+
+wire [255:0] Databus;
+reg clock dReset;
+wire MemE, MemW, RegE, RegW; 
+wire [4:0] Address;
+
+module Memory (Databus, Address, MemW, MemE, dReset);
+module Register (Databus, RegE, RegW, dReset);
+module Execution (Databus, Address, dWrite, dEnable, dReset);
+module Instructions (Databus, Address, dWrite, dEnable, dReset);
+module ALU (dALU, dEnable, dWrite, dEnd, dReset, Databus, Address, ALU_Opcode);
+
+initial 
+	dReset = 1;
+	#10 dReset = 0;
+	#10 dReset = 0;
+	
+initial
+	Clk = 0;
+	#10forever Clk = !Clk;
+	
+
+
+end module 
